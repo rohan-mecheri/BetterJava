@@ -1,0 +1,18 @@
+2024-12-31 21:25:56,376 - parser - INFO - Starting syntax validation.
+2024-12-31 21:25:56,377 - parser - ERROR - Line 4: Missing ':' at the end of block-starting line.
+2024-12-31 21:25:56,377 - parser - INFO - Starting syntax validation.
+2024-12-31 21:25:56,377 - parser - ERROR - Line 3: Unexpected indentation level.
+2024-12-31 21:25:56,377 - parser - INFO - Starting syntax validation.
+2024-12-31 21:25:56,377 - parser - ERROR - Line 4: Missing ':' at the end of block-starting line.
+2024-12-31 21:29:23,680 - parser - INFO - Starting syntax validation.
+2024-12-31 21:29:23,680 - parser - ERROR - Line 2: Misaligned or invalid code.
+2024-12-31 21:29:23,680 - parser - INFO - Starting syntax validation.
+2024-12-31 21:29:23,680 - parser - ERROR - Line 3: Unexpected indentation level.
+2024-12-31 21:29:23,680 - parser - INFO - Starting syntax validation.
+2024-12-31 21:29:23,680 - parser - ERROR - Line 4: Unexpected indentation for inline code.
+2024-12-31 21:29:43,646 - parser - INFO - Starting syntax validation.
+2024-12-31 21:29:43,647 - parser - ERROR - Line 2: Misaligned or invalid code.
+2024-12-31 21:29:43,647 - parser - INFO - Starting syntax validation.
+2024-12-31 21:29:43,647 - parser - ERROR - Line 3: Unexpected indentation level.
+2024-12-31 21:29:43,647 - parser - INFO - Starting syntax validation.
+2024-12-31 21:29:43,647 - parser - ERROR - Line 4: Unexpected indentation for inline code.
