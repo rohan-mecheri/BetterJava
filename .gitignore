@@ -1,0 +1,26 @@
+# Byte-compiled Python files
+__pycache__/
+*.pyc
+*.pyo
+
+# Log files
+*.log
+logs/
+parser.log
+
+# Virtual environment directories
+venv/
+.env/
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+
+# Test artifacts
+tests/__pycache__/
+tests/*/*.pyc
+
+# System files
+.DS_Store
+Thumbs.db
