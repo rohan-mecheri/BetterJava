@@ -1,0 +1,83 @@
+#!/usr/bin/env python3
+"""
+Main CLI interface for BetterJava.
+"""
+
+import argparse
+from betterjava.translator import translate_to_java
+from betterjava.parser import parse_bjava
+from betterjava.logger import setup_logger
+from betterjava.exceptions import BetterJavaSyntaxError, BetterJavaTranslationError
+
+logger = setup_logger("betterjava-cli", "cli.log")
+
+def main():
+    parser = argparse.ArgumentParser(description="BetterJava Command-Line Interface")
+    subparsers = parser.add_subparsers(dest="command", help="Available commands")
+
+    translate_parser = subparsers.add_parser("translate", help="Translate .bjava to .java")
+    translate_parser.add_argument("input", help="Input .bjava file")
+    translate_parser.add_argument("output", help="Output .java file")
+
+    validate_parser = subparsers.add_parser("validate", help="Validate BetterJava syntax")
+    validate_parser.add_argument("input", help="Input .bjava file")
+
+    args = parser.parse_args()
+
+    if args.command == "translate":
+        try:
+            logger.info(f"Reading input file: {args.input}")
+            with open(args.input, "r") as infile:
+                bjava_code = infile.read()
+
+            logger.info("Validating BetterJava syntax.")
+            parse_bjava(bjava_code)
+
+            logger.info("Translating BetterJava to Java.")
+            java_code = translate_to_java(bjava_code)
+
+            logger.info(f"Writing output file: {args.output}")
+            with open(args.output, "w") as outfile:
+                outfile.write(java_code)
+
+            print(f"Successfully translated {args.input} to {args.output}")
+            logger.info(f"Successfully translated {args.input} to {args.output}")
+
+        except BetterJavaSyntaxError as e:
+            logger.error(f"Syntax Error: {e}")
+            print(f"Syntax Error: {e}")
+            exit(1)
+        except BetterJavaTranslationError as e:
+            logger.error(f"Translation Error: {e}")
+            print(f"Translation Error: {e}")
+            exit(1)
+        except Exception as e:
+            logger.error(f"Unexpected Error: {e}")
+            print(f"Unexpected Error: {e}")
+            exit(1)
+
+    elif args.command == "validate":
+        try:
+            logger.info(f"Validating BetterJava syntax in file: {args.input}")
+            with open(args.input, "r") as infile:
+                bjava_code = infile.read()
+
+            parse_bjava(bjava_code)
+            print(f"Syntax validation passed for {args.input}")
+            logger.info(f"Syntax validation passed for {args.input}")
+
+        except BetterJavaSyntaxError as e:
+            logger.error(f"Syntax Error: {e}")
+            print(f"Syntax Error: {e}")
+            exit(1)
+        except Exception as e:
+            logger.error(f"Unexpected Error: {e}")
+            print(f"Unexpected Error: {e}")
+            exit(1)
+
+    else:
+        parser.print_help()
+        exit(1)
+
+if __name__ == "__main__":
+    main()
